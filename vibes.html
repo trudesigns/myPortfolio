@@ -65,7 +65,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-        <!--
+            <!--
     /**
      * Section 1
 
@@ -85,8 +85,7 @@
       /**
        * Bootstrap navbar component
        */ -->
-            <!-- Add your site or application content here -->
-             <nav id="navbar" class="navbar navbar-inverse" ng-class="{'navbar-fixed-top': nav.isScrolledDown}">
+         <nav id="navbar" class="navbar navbar-inverse" ng-class="{'navbar-fixed-top': nav.isScrolledDown}">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -95,38 +94,16 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <!-- <div collapse="nav.isCollapsed" id="navbarNav"> -->
-       <div uib-collapse="nav.isCollapsed">
+      <div uib-collapse="nav.isCollapsed">
   <ul class="nav navbar-nav">
-  <li>
-    <a href="#my-work"
-       du-smooth-scroll
-       du-scrollspy
-       offset="70"
-       ng-click="nav.toggleNav(true)">Projects</a>
-  </li>
-
-  <li>
-    <a href="#about-me"
-       du-smooth-scroll
-       du-scrollspy
-       offset="70"
-       ng-click="nav.toggleNav(true)">About</a>
-  </li>
-
-  <li>
-    <a href="#work-with-me"
-       du-smooth-scroll
-       du-scrollspy
-       offset="70"
-       ng-click="nav.toggleNav(true)">Contact</a>
-  </li>
-
-  <li>
-    <a href="./files/trishB_resume_2022.pdf" target="_blank" rel="noopener">Resume</a>
-  </li>
-</ul>
-
+    <li><a href="./index.html#my-work" ng-click="nav.toggleNav(true)">Projects</a></li>
+    <li><a href="./index.html#about-me" ng-click="nav.toggleNav(true)">About</a></li>
+    <li><a href="./index.html#work-with-me" ng-click="nav.toggleNav(true)">Contact</a></li>
+    <li><a href="./files/trishB_resume_2022.pdf" target="_blank" rel="noopener">Resume</a></li>
+  </ul>
 </div>
+
+
 
         <!-- /.navbar-collapse -->
       </div>
