@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOC Business Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.6; /* Improved readability */
+        }
+
+        /* Header */
+        header {
+            background: #0B1F36;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header-titles {
+            margin-bottom: 1rem;
+        }
+
+        .header-title {
+            font-weight: 700;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .header-separator {
+            width: 120px;
+            border: 1px solid #fff;
+            margin: 0.5rem auto;
+        }
+
+        .header-subtitle {
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        .header-main-heading {
+            font-size: 1.5rem; /* More consistent heading size */
+            margin-top: 0.5rem;
+        }
+
+        .header-sub-heading {
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: #0B1F36;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: text-decoration 0.3s ease; /* Smooth transition for hover */
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Image */
+        .hero-img {
+            display: block; /* Prevents extra space below image */
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        /* Sections */
+        section {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto; /* Center the section */
+        }
+
+        .section-title {
+            color: #0B1F36;
+            margin-bottom: 1rem;
+            text-align: center; /* Center section titles for better flow */
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; /* Increased gap for better spacing */
+        }
+
+        .service-card, .case-study-card {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            gap: 0.75rem; /* Adjusted gap */
+        }
+
+        .card-title {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem; /* Slightly larger card titles */
+        }
+
+        .card-subtitle {
+            margin: 0 0 0.75rem 0;
+            color: #777; /* Muted subtitle color */
+        }
+
+        details {
+            margin-top: 0.5rem;
+        }
+
+        details > summary {
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Lists */
+        ul {
+            padding-left: 1.5rem; /* Consistent list indentation */
+            margin-bottom: 1.5rem;
+            list-style-type: disc; /* Explicit bullet style */
+        }
+
+        li {
+            margin-bottom: 0.75rem; /* Adjusted list item spacing */
+        }
+
+        /* Footer */
+        footer {
+            background: #eee;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555; /* Darker footer text */
+        }
+
+        /* Call to Action Button */
+        #cta-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0B1F36;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        #cta-button:hover {
+            background-color: #155ab6;
+        }
+
+        /* Links */
+        a[href^="mailto"] {
+            color: #0B1F36;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a[href^="mailto"]:hover {
+            color: #ccc;
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        #contact-box {
+            background-color: #f1f5f9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        #contact-box h2 {
+            margin-top: 0;
+        }
+
+        #contact-form label {
+            display: block; /* Improve form layout */
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        #contact-form input[type="text"],
+        #contact-form input[type="email"],
+        #contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Prevent padding from affecting width */
+        }
+
+        #contact-form button[type="submit"] {
+            background-color: #1A73E8;
+            color: #fff;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #contact-form button[type="submit"]:hover {
+            background-color: #0d47a1;
+        }
+
+        #confirmationMsg {
+            display: none;
+            margin-top: 1rem;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade-in Animation Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            // Contact Form Submission
+            const contactForm = document.getElementById('contactForm');
+            const confirmationMsg = document.getElementById('confirmationMsg');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    if (contactForm.checkValidity()) {
+                        confirmationMsg.style.display = 'block';
+                        confirmationMsg.scrollIntoView({ behavior: 'smooth' });
+                        contactForm.reset();
+                    }
+                    // In a real scenario, you would send the form data to a server here.
+                    console.log('Form submitted (client-side validation only)');
+                });
+            }
+        });
+    </script>
+
+    <header>
+        <div class="header-titles">
+            <h1 class="header-title">AOC CONSULTING</h1>
+            <hr class="header-separator">
+            <p class="header-subtitle">PEOPLE . PURPOSE . RESULTS</p>
+        </div>
+        <h1 class="header-main-heading">Empowering Global Companies to Thrive on Amazon U.S.</h1>
+        <p class="header-sub-heading">AOC Business Consulting: Your Strategic Growth Partner</p>
+    </header>
+
+    <nav>
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#cases" class="nav-link">Case Studies</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Businessman presenting to client in office" class="hero-img">
+
+    <section id="overview" class="fade-in">
+        <h2 class="section-title">Executive Overview</h2>
+        <p>AOC Business Consulting helps pan-Asian and European brands succeed in the U.S. Amazon marketplace by offering full-spectrum support—from logistics and compliance to brand registry and ad optimization. We are not an agency—we’re your embedded growth partner with a human-centered, results-driven approach.</p>
+    </section>
+
+    <section id="services" class="fade-in">
+        <h2 class="section-title">Our Core Services</h2>
+        <div class="section-grid">
+            <div class="service-card">
+                <h3 class="card-title">Market Entry & Launch</h3>
+                <p class="card-subtitle">Launch strategies tailored for success in Amazon U.S.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>We help clients evaluate U.S. market demand, assess category fit, map competitors and pricing models, register and protect their brand under Amazon Brand Registry, and craft go-to-market plans including SEO-rich content, mobile-first A+ Content, and storefront design.</p>
+                </details>
+            </div>
+            <div class="service-card">
+                <h3 class="card-title">Logistics & Fulfillment</h3>
+                <p class="card-subtitle">Streamlined warehousing and delivery operations.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>We manage everything from FBA/FBM strategies to 3PL warehouse sourcing, freight forwarding, customs clearance, and compliance. Our support includes Amazon receiving standards, inventory forecasting, and packaging optimization for U.S. regulations.</p>
+                </details>
+            </div>
+            <div class="service-card">
+                <h3 class="card-title">Performance Marketing</h3>
+                <p class="card-subtitle">Full-funnel Amazon ad strategy and execution.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>Our performance marketing team handles sponsored products, brand and display ads, DSP campaigns, keyword optimization, A/B testing, CRO strategies, and ROI-based dynamic pricing to deliver sustainable revenue growth.</p>
+                </details>
+            </div>
+            <div class="service-card">
+                <h3 class="card-title">Customer Experience</h3>
+                <p class="card-subtitle">Systems for retention, reviews, and satisfaction.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>We establish systems for post-purchase reviews, automated return handling, multilingual customer response templates, and Voice of Customer (VOC) analysis to enhance satisfaction and retention.</p>
+                </details>
+            </div>
+            <div class="service-card">
+                <h3 class="card-title">Strategic Management</h3>
+                <p class="card-subtitle">Growth support via dashboards, data, and planning.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>We drive long-term results with live dashboards, SKU-level profitability tracking, seasonal campaigns, marketplace diversification, and training on Amazon’s premium placements.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="fade-in">
+        <h2 class="section-title">Case Studies</h2>
+        <div class="section-grid">
+            <div class="case-study-card">
+                <p><strong>European Electronics Brand:</strong></p>
+                <p class="card-subtitle">$1.1M revenue in year one with optimized FBA and PPC overhaul.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>Through FBA optimization and high-converting sponsored ad strategies, AOC helped a European electronics company penetrate the competitive U.S. market, earning $1.1M in sales and maintaining 4.7-star average ratings. Custom keyword mapping and CRO led to top category placement and improved Buy Box retention.</p>
+                </details>
+            </div>
+            <div class="case-study-card">
+                <p><strong>Pan-Asian Wellness Brand:</strong></p>
+                <p class="card-subtitle">Rebranding and influencer strategy led to 2,500+ monthly units sold by month 9.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>This client transitioned from niche wellness supplier to top-selling category leader. AOC developed brand voice, executed rebranding, and implemented an influencer-based review generation plan. Monthly sales exceeded 2,500 units, achieving Amazon’s Choice badges in multiple keywords.</p>
+                </details>
+            </div>
+            <div class="case-study-card">
+                <p><strong>Global CPG Company:</strong></p>
+                <p class="card-subtitle">Reduced returns by 34% and boosted subscription purchases.</p>
+                <details>
+                    <summary>Read more</summary>
+                    <p>A Fortune 100 consumer goods company partnered with AOC to overhaul its Amazon presence. Improvements in return management, product bundling, and subscription logic reduced return rates by 34%. VOC feedback tools revealed CX insights that informed multi-region improvements.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <a id="cta-button" href="#contact">Let’s Talk</a>
+
+    <section id="contact" class="fade-in">
+        <div id="contact-box">
+            <h2>READY TO EXPAND?</h2>
+            <p>If you are:</p>
+            <ul>
+                <li>A government agency supporting exporters,</li>
+                <li>A trade organization looking to expand its network,</li>
+                <li>Or a global brand seeking a dedicated Amazon U.S. partner—</li>
+            </ul>
+            <p>Let’s talk. AOC Business Consulting is proud to be a trusted bridge between regional innovation and the world’s largest digital marketplace. Whether you’re launching for the first time or scaling for the next phase of growth, we bring clarity, capability, and care to your Amazon U.S. journey.</p>
+            <blockquote style="margin: 1rem 0; font-style: italic; color: #204870;">“We don’t just get you started on Amazon—we help you build a business that thrives.”</blockquote>
+            <p><strong>Contact us:</strong> <a href="mailto:alexander@acobusinessconsulting.com">alexander@acobusinessconsulting.com</a> </p>
+        </div>
+        <h2 class="section-title">Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">

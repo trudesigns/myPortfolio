@@ -1,0 +1,33 @@
+.DS_Store
+old/
+media/
+vs2/
+websites/
+
+# --- keep repo small ---
+old/
+media/
+vs2/
+websites/
+
+# OS / misc
+.DS_Store
+
+# videos (GitHub Pages hates huge pushes)
+*.mov
+*.MOV
+*.mp4
+*.MP4
+
+# build / deps (if you have them)
+node_modules/
+dist/
+build/
+
+# --- do not publish / security / hosting artifacts ---
+phpinfo.php
+.sucuriquarantine/
+.well-known/
+.htaccess
+.htaccess.bak
+testtrishid/.ftpquota
